@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tarifa Alex Pascual</title>
+<meta name="description" content="Alimentos frescos y congelados. Precios actualizados. Busca por producto o código.">
+<meta name="theme-color" content="#ff2d2d">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://congela2-coder.github.io/tarifa-alexpascual/">
+<meta property="og:title" content="Tarifa Alex Pascual">
+<meta property="og:description" content="Alimentos frescos y congelados. Precios actualizados. Busca por producto o código.">
+<meta property="og:image" content="https://congela2-coder.github.io/tarifa-alexpascual/preview.png?v=__VER__">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Una columna: banda roja con el logo, buscador fijo, filas con foto · nombre · precio */
+:root{
+  --brand:#ff2d2d;
+  --bg:#f4f4f2; --panel:#ffffff; --fg:#1d1b1b; --muted:#5f5a59; --line:#e2dfdd;
+  --accent:#d41c1c; --accent-fg:#ffffff; --chip:#ecebe8; --ph:#f0eeeb; --ph-fg:#b4aeab;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151313; --panel:#1f1c1c; --fg:#efeceb; --muted:#a59e9c; --line:#322d2c;
+  --accent:#ff5a55; --accent-fg:#1d0505; --chip:#2b2726; --ph:#2a2625; --ph-fg:#5f5856; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151313; --panel:#1f1c1c; --fg:#efeceb; --muted:#a59e9c; --line:#322d2c;
+  --accent:#ff5a55; --accent-fg:#1d0505; --chip:#2b2726; --ph:#2a2625; --ph-fg:#5f5856; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.35}
+img{max-width:100%}
+.band{background:var(--brand);padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 8px;text-align:center}
+.band img{display:block;margin:0 auto;height:96px;width:auto}
+.wrap{max-width:720px;overflow-x:clip;margin:0 auto;padding:0 16px calc(40px + env(safe-area-inset-bottom,0px))}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;min-width:0;justify-content:space-between;gap:12px}
+h1{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:.02em;text-transform:uppercase;margin:0}
+h1 span{color:var(--accent)}
+.count{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.search{display:flex;align-items:center;gap:8px;background:var(--panel);border:2px solid var(--accent);border-radius:12px;padding:4px 6px 4px 14px}
+.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--fg);font:500 1.2rem var(--body);padding-block:10px}
+.search input::placeholder{color:var(--muted);font-weight:400}
+.clear{border:0;background:var(--chip);color:var(--fg);font:600 .9rem var(--body);border-radius:8px;padding:8px 12px;cursor:pointer}
+.tip{font-size:.85rem;color:var(--muted);margin:0}
+.tip b{color:var(--fg);font-weight:600}
+select{font:500 .95rem var(--body);color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 12px;width:100%}
+.clear:focus-visible,.chip:focus-visible,select:focus-visible,.ph:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.label{font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;color:var(--muted);margin:16px 0 6px}
+ul{list-style:none;margin:0;padding:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+li{display:grid;grid-template-columns:64px 1fr auto;gap:4px 12px;padding:10px 14px 10px 10px;border-top:1px solid var(--line);align-items:center}
+li:first-child{border-top:0}
+.ph{grid-row:1 / span 2;width:64px;height:64px;border-radius:8px;background:var(--ph);display:grid;place-items:center;overflow:hidden;border:0;padding:0;color:var(--ph-fg)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph.has{cursor:zoom-in}
+.ph svg{width:26px;height:26px}
+.name{min-width:0;font-weight:600;font-size:1rem;overflow-wrap:anywhere;align-self:end}
+.meta{grid-column:2;font-size:.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-self:start}
+.code{font-variant-numeric:tabular-nums;font-weight:600;color:var(--fg)}
+.price{grid-row:1 / span 2;grid-column:3;text-align:right;font-family:var(--display);font-weight:700;font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+mark{background:transparent;color:var(--accent);font-weight:700}
+.empty{padding:28px 16px;text-align:center;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:12px}
+.chip{display:block;width:100%;margin-top:10px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:600 .9rem var(--body);border-radius:999px;padding:8px 12px;cursor:pointer}
+.box{position:fixed;inset:0;z-index:20;background:rgba(10,8,8,.88);display:grid;place-items:center;padding:24px 16px;cursor:zoom-out}
+.box figure{margin:0;max-width:560px;width:100%;text-align:center;color:#fff}
+.box img{width:100%;max-height:70vh;object-fit:contain;border-radius:10px;background:#fff}
+.box figcaption{margin-top:12px;font-weight:600}
+.box figcaption span{display:block;font-family:var(--display);font-size:1.8rem;margin-top:4px}
+@media (max-width:380px){li{grid-template-columns:52px 1fr auto}.ph{width:52px;height:52px}.price{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div class="band"><img src="__LOGO__" alt="Alex Pascual · Alimentos frescos y congelados" width="160" height="96"></div>
+<div class="wrap">
+<header>
+  <div class="brand"><h1>Tarifa de <span>precios</span></h1><div class="count" id="count"></div></div>
+  <div class="search">
+    <input id="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="langostino, pechuga, E5004…" aria-label="Buscar producto o código">
+    <button class="clear" id="clear" type="button">Borrar</button>
+  </div>
+  <p class="tip">Para buscar hablando, toca el cuadro y pulsa el <b>micrófono del teclado</b> del móvil. Toca una foto para verla grande.</p>
+  <select id="fam" aria-label="Familia"><option value="">Todas las familias</option></select>
+</header>
+<div class="label" id="lab"></div>
+<div id="res"></div>
+</div>
+
+<script>
+const FECHA="__FECHA__";
+const RAW=__DATA__;
+const EXTS=['jpg','JPG','jpeg','png','webp'];
+const FOTO={}; // código → ruta encontrada, o false si no hay foto
+const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>';
+const ABBR={extrat:'extratierno',esc:'escalope',pza:'pieza',v:'vacio',cong:'congelado',pech:'pechuga',lango:'langostino',lgt:'langostino',evis:'eviscerado',uni:'unidad',bacalao:'bacalao',york:'jamon york',gamba:'gamba gambon'};
+const STOP=new Set('a al de del la las el los lo un una unos unas que cual cuanto cuanta esta estan es precio precios tiene tienes tenemos me dime por favor kilo kilos kg y o en e mira busca buscar sale caja bolsa'.split(' '));
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+const stem=t=>t.length>4&&t.endsWith('es')&&!t.endsWith('ies')?t.slice(0,-2):(t.length>3&&t.endsWith('s')?t.slice(0,-1):t);
+const items=RAW.map(([c,d,p,f])=>{
+  const exp=[];norm(d).split(' ').filter(Boolean).forEach(t=>{exp.push(t);if(ABBR[t])exp.push(...ABBR[t].split(' '))});
+  if(/S\/|SIN /i.test(d))exp.push('sin');if(/C\/|CON /i.test(d))exp.push('con');
+  return {c,cn:norm(c).replace(/ /g,''),d,p,f,dt:exp.map(stem),ft:norm(f).split(' ').map(stem)};
+});
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
+const cap=s=>s.charAt(0)+s.slice(1).toLowerCase();
+[...new Set(items.map(i=>i.f))].forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=cap(f);$('fam').appendChild(o)});
+$('count').innerHTML=items.length+' artículos'+(FECHA?'<br>Precios del '+FECHA:'');
+const tokMatch=(q,t)=>t.startsWith(q)||(t.length>=3&&q.startsWith(t));
+let limit=60;
+function search(){
+  const raw=$('q').value,qn=norm(raw),fam=$('fam').value;
+  const pool=items.filter(i=>!fam||i.f===fam);
+  let list,qt=[];$('lab').dataset.partial='';
+  const qc=qn.replace(/ /g,'');
+  const byCode=qn&&/\d/.test(qn)&&!/ /.test(qn)?pool.filter(i=>i.cn.startsWith(qc)):[];
+  if(!qn)list=pool;
+  else if(byCode.length)list=byCode;
+  else{
+    qt=qn.split(' ').filter(t=>t&&!STOP.has(t)).map(stem);
+    if(!qt.length)list=pool;
+    else{
+      const scored=[];
+      for(const i of pool){
+        let hit=0,sc=0;
+        for(const q of qt){
+          if(i.dt.some(t=>tokMatch(q,t))){hit++;sc+=3+(i.dt.includes(q)?1:0)}
+          else if(i.ft.some(t=>tokMatch(q,t))){hit++;sc+=1}
+        }
+        if(hit)scored.push({i,full:hit===qt.length,sc,hit});
+      }
+      const full=scored.filter(x=>x.full);
+      const best=Math.max(0,...scored.map(y=>y.hit));
+      const use=full.length?full:scored.filter(x=>x.hit===best);
+      use.sort((a,b)=>b.sc-a.sc||a.i.d.length-b.i.d.length);
+      list=use.map(x=>x.i);
+      if(!full.length)$('lab').dataset.partial='1';
+    }
+  }
+  render(list,qt,raw.trim(),!!fam);
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function hl(d,qt){
+  if(!qt.length)return esc(d);
+  return d.split(/(\s+)/).map(w=>{const n=stem(norm(w).split(' ')[0]||'');return n&&qt.some(q=>tokMatch(q,n))?'<mark>'+esc(w)+'</mark>':esc(w)}).join('');
+}
+function photo(i){
+  const f=FOTO[i.c];
+  if(f===false)return `<span class="ph">${ICON}</span>`;
+  if(f)return `<button class="ph has" type="button" data-c="${esc(i.c)}" aria-label="Ver foto de ${esc(i.d)}"><img alt="" src="${f}"></button>`;
+  return `<button class="ph" type="button" data-c="${esc(i.c)}" aria-label="Foto de ${esc(i.d)}" tabindex="-1">${ICON}<img alt="" loading="lazy" hidden data-e="0" src="fotos/${encodeURIComponent(i.c)}.${EXTS[0]}"></button>`;
+}
+function render(list,qt,raw,filtered){
+  const lab=$('lab');
+  if(!raw&&!filtered)lab.textContent='Toda la tarifa · '+list.length+' artículos';
+  else if(!list.length)lab.textContent='Sin resultados';
+  else lab.textContent=(lab.dataset.partial&&raw?'Parecidos a ':'')+(raw?'"'+raw+'"':'Filtrado')+' · '+list.length+(list.length===1?' artículo':' artículos');
+  if(!list.length){$('res').innerHTML='<div class="empty">No encuentro nada con esas palabras. Prueba con menos palabras o con el código del artículo.</div>';return}
+  const shown=list.slice(0,limit);
+  let h='<ul>'+shown.map(i=>`<li>${photo(i)}<div class="name">${hl(i.d,qt)}</div><div class="price">${fmt(i.p)} €</div><div class="meta"><span class="code">${esc(i.c)}</span><span>${esc(cap(i.f))}</span></div></li>`).join('')+'</ul>';
+  if(list.length>limit)h+=`<button class="chip" id="more" type="button">Ver más (${list.length-limit} restantes)</button>`;
+  $('res').innerHTML=h;
+  $('res').querySelectorAll('.ph img[data-e]').forEach(img=>{
+    const c=img.parentNode.dataset.c;
+    img.onload=()=>{FOTO[c]=img.getAttribute('src');img.hidden=false;const b=img.parentNode;b.classList.add('has');b.tabIndex=0;const s=b.querySelector('svg');if(s)s.remove()};
+    img.onerror=()=>{const n=+img.dataset.e+1;if(n<EXTS.length){img.dataset.e=n;img.src=img.src.replace(/\.[^.\/]+$/,'.'+EXTS[n])}else{FOTO[c]=false;img.remove()}};
+  });
+  const m=$('more');if(m)m.onclick=()=>{limit+=60;search()};
+}
+$('res').addEventListener('click',e=>{
+  const b=e.target.closest('.ph.has');if(!b)return;
+  const i=items.find(x=>x.c===b.dataset.c),src=b.querySelector('img').src;
+  const box=document.createElement('div');box.className='box';box.setAttribute('role','dialog');
+  box.innerHTML=`<figure><img src="${src}" alt="${esc(i.d)}"><figcaption>${esc(i.c)} · ${esc(i.d)}<span>${fmt(i.p)} €</span></figcaption></figure>`;
+  const close=()=>{box.remove();document.removeEventListener('keydown',k)};
+  const k=ev=>{if(ev.key==='Escape')close()};
+  box.onclick=close;document.addEventListener('keydown',k);document.body.appendChild(box);
+});
+let tmr;
+$('q').addEventListener('input',()=>{clearTimeout(tmr);limit=60;tmr=setTimeout(search,120)});
+$('q').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('q').blur()}});
+$('clear').onclick=()=>{$('q').value='';limit=60;search();$('q').focus()};
+$('fam').onchange=()=>{limit=60;search()};
+search();
+</script>
+<script data-goatcounter="https://alexpascual.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
