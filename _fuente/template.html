@@ -95,6 +95,7 @@ mark{background:transparent;color:var(--accent);font-weight:700}
 <script>
 const FECHA="__FECHA__";
 const RAW=__DATA__;
+const FAMS=__FAMS__; // [código, familia] en el orden de la tarifa
 const EXTS=['jpg','JPG','jpeg','png','webp'];
 const FOTO={}; // código → ruta encontrada, o false si no hay foto
 const ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>';
@@ -107,9 +108,10 @@ const items=RAW.map(([c,d,p,f])=>{
   if(/S\/|SIN /i.test(d))exp.push('sin');if(/C\/|CON /i.test(d))exp.push('con');
   return {c,cn:norm(c).replace(/ /g,''),d,p,f,dt:exp.map(stem),ft:norm(f).split(' ').map(stem)};
 });
-// Orden: familia alfabética; dentro, primero códigos numéricos (de menor a mayor) y luego los de letras
+// Orden: familia por su código (familias.json; las desconocidas al final, alfabético); dentro, primero códigos numéricos (de menor a mayor) y luego los de letras
 const isNum=c=>/^\d/.test(c);
-items.sort((a,b)=>a.f.localeCompare(b.f,'es',{sensitivity:'base'})||(isNum(b.c)-isNum(a.c))||
+const FORD=Object.fromEntries(FAMS.map(([c,f],n)=>[f,n]));const fo=f=>f in FORD?FORD[f]:999;
+items.sort((a,b)=>fo(a.f)-fo(b.f)||a.f.localeCompare(b.f,'es',{sensitivity:'base'})||(isNum(b.c)-isNum(a.c))||
   (isNum(a.c)?parseFloat(a.c)-parseFloat(b.c):0)||a.c.localeCompare(b.c,'es',{numeric:true}));
 const $=id=>document.getElementById(id);
 const fmt=n=>n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});

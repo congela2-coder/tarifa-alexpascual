@@ -4,7 +4,7 @@ fecha=sys.argv[1] if len(sys.argv)>1 else datetime.date.today().strftime('%d/%m/
 data=json.load(open('data.json'))
 logo='data:image/png;base64,'+base64.b64encode(open('logo.png','rb').read()).decode()
 h=open('template.html').read()
-h=h.replace('__DATA__',json.dumps(data,ensure_ascii=False)).replace('__LOGO__',logo).replace('__FECHA__',fecha).replace('__VER__',fecha.replace('/',''))
+h=h.replace('__DATA__',json.dumps(data,ensure_ascii=False)).replace('__FAMS__',open('familias.json').read().strip()).replace('__LOGO__',logo).replace('__FECHA__',fecha).replace('__VER__',fecha.replace('/',''))
 open('index.html','w').write(h)
 # imagen de vista previa para WhatsApp (1200x630)
 im=Image.new('RGB',(1200,630),(255,45,45)); lg=Image.open('logo.png').convert('RGBA')
