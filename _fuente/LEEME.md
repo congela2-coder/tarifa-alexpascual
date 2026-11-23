@@ -5,3 +5,5 @@ Actualización semanal: Alex manda el Excel Tarifa_Alex_Pascual.xlsx.
 3. Copiar index.html a la raíz del repo, commit y push. Fotos en /fotos con el código como nombre.
 
 Si el Excel no viene en el formato habitual (otras columnas, familias distintas, productos que faltan o sobran...), no decidas por tu cuenta: pregunta a Alex cada duda antes de actualizar (qué precio publicar, si sustituir o fusionar, familias, fecha). Nunca publicar coste ni margen.
+
+Descatalogados (no volver a publicar aunque vengan en el Excel; si vienen, preguntar): E5202P
